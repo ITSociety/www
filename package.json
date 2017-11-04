@@ -32,9 +32,12 @@
     "express": "^4.16.2",
     "helmet": "^3.9.0",
     "local-env-var": "^1.0.4",
+    "material-ui": "next",
+    "material-ui-icons": "^1.0.0-beta.17",
     "morgan": "^1.9.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
+    "react-responsive": "^3.0.0",
     "react-router-dom": "^4.2.2",
     "webpack": "^3.8.1"
   },

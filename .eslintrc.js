@@ -8,10 +8,11 @@ module.exports = {
     "react/jsx-filename-extension": [1, { extensions: [".js", ".jsx"] }],
     "arrow-body-style": ["error", "as-needed"],
     "arrow-parens": ["error", "as-needed"],
-    "react/forbid-prop-types": [0],
+    "import/prefer-default-export": 0,
+    "react/forbid-prop-types": 0,
     "react/no-find-dom-node": 0,
-    "react/prop-types": [0],
     "import/extensions": 0,
+    "react/prop-types": 0,
     "no-console": 1
   },
   env: {
