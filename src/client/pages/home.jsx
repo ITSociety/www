@@ -1,5 +1,11 @@
 import React from 'react';
+import { Events, Hero } from '../partial';
 
-const Home = () => <h1>Hello world</h1>;
+const Home = () => (
+  <div className="home">
+    <Hero />
+    <Events />
+  </div>
+);
 
 export default Home;

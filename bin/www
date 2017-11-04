@@ -20,4 +20,5 @@ const server = http.createServer(app);
 server.listen(port);
 
 // inform us of the running server
-server.on('listening', () => console.log(`Server running on port ${port}`));
+/* eslint-disable */
+server.on("listening", () => console.log(`Server running on port ${port}`));
