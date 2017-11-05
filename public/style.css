@@ -13,6 +13,13 @@ body {
   margin: 0;
 }
 
+.layout {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
 .gutter {
   margin: 0 auto;
   padding: 0 15%;
@@ -78,9 +85,7 @@ body {
   background-color: #f5f5f5;
 }
 
-.menu-button {
-  height: 100%;
-}
+.menu-button { height: 100%; }
 
 .hero-main {
   width: 100%;
@@ -114,9 +119,7 @@ body {
   justify-content: space-between;
 }
 
-.hero-links li {
-  list-style-type: none;
-}
+.hero-links li { list-style-type: none; }
 
 .hero-links a {
   text-decoration: none;
@@ -132,9 +135,7 @@ body {
   border-radius: 4px;
 }
 
-.hero-links a:hover {
-  background-color: #ede7f6;
-}
+.hero-links a:hover { background-color: #ede7f6; }
 
 .events-title {
   margin: 24px 0;
@@ -145,4 +146,87 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.event-card {
+  font-family: 'Roboto', sans-serif;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.event-card-grid-item { display: flex; }
+
+.event-card h1 { display: none; }
+
+.event-card h2 {
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.event-card a, .event-card a span { 
+  text-decoration: none; 
+  color: #7e57c2;
+}
+
+.event-time {
+  color: rgba(0, 0, 0, 0.63);
+}
+
+.footer-main {
+  width: 100%;
+  margin-top: 40px;
+  font-family: 'Roboto', sans-serif;  
+  color: #eceff1;
+  
+}
+
+.footer-main p {
+  margin: 0;
+}
+
+.footer-content {
+  background-color: #455a64;
+}
+
+.footer-tagline {
+  background-color: #263238;
+  height: 40px;
+}
+
+.footer-tagline p {
+  line-height: 40px;
+}
+
+.footer-content .connect {
+  padding: 16px 0;
+}
+
+.footer-content .connect > ul {
+  list-style-type: none;
+  padding-left: 16px;
+  margin: 0;
+}
+
+.footer-content .connect li {
+  line-height: 24px;
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 16px;
+}
+
+.footer-content .connect li > a {
+  text-decoration: none;
+  color: #cfd8dc;
+  transition: 0.3s color ease;
+}
+
+.footer-content .connect li > a:hover {
+  color: #90a4ae;
+}
+
+.footer-content .connect > h2 {
+  margin: 0;
+  padding-top: 8px;
+  font-weight: 400;
 }

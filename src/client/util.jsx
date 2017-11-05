@@ -1,5 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import marked from 'marked';
+import htmlToReact from 'html-react-parser';
+
+
+marked.setOptions({
+  gfm: true,
+  sanitize: true,
+  smartypants: true,
+  breaks: true,
+});
 
 
 module.exports = {
@@ -18,4 +28,10 @@ module.exports = {
       </li>
     );
   }),
+  getEndpoint: end => fetch(end).then(res => res.json()),
+  markdownToReact: str => {
+    const convertedStr = marked(str);
+    const reactElem = htmlToReact(convertedStr);
+    return reactElem;
+  },
 };

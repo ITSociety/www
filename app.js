@@ -31,6 +31,6 @@ app.use('/api', api);
 /**
  * this middleware goes at the end, so as to not interfere with other endpoints
  */
-app.get('/', (req, res) => res.sendFile(index));
+app.get('*', (req, res) => res.sendFile(index));
 
 module.exports = app;

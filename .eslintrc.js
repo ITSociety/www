@@ -13,7 +13,8 @@ module.exports = {
     "react/no-find-dom-node": 0,
     "import/extensions": 0,
     "react/prop-types": 0,
-    "no-console": 1
+    "no-console": 1,
+    "no-debugger": 0
   },
   env: {
     browser: true,
