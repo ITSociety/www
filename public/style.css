@@ -134,7 +134,7 @@ body {
 
 .hero-links a:hover { background-color: #ede7f6; }
 
-.events-title {
+.events-title, .about-title {
   margin: 24px 0;
   font-weight: 300;
 }
@@ -286,4 +286,8 @@ a, a span {
 
 .event-title {
   font-weight: 300;
+}
+
+.about {
+  padding-bottom: 40px;
 }

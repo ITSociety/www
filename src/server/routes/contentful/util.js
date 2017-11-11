@@ -1,12 +1,15 @@
 const contentful = require('contentful');
 
+// init client
 const client = contentful.createClient({
   space: process.env.CONTENTFUL_SPACE,
   accessToken: process.env.CONTENTFUL_ACCESS,
 });
 
-
-// abstract Contentful#getEntries in to something nicer to use
+/**
+ * abstract ContentfulClient#getEntries and curry
+ * @param {String} entry entry type
+ */
 const getEntry = entry => async () => {
   const query = { include: 3, content_type: entry };
   const { items } = await client.getEntries(query);
@@ -29,7 +32,10 @@ const sortEvents = (ev1, ev2) => {
   return 0;
 };
 
-// in order to save on network traffic, only send import information
+/**
+ *  in order to save on network traffic, only send import information
+ * @param {Object} ev Event to format
+ */
 const prettifyEvent = ev => {
   const { sys, fields } = ev;
   const image = 'optionalImage' in fields ? `https:${fields.optionalImage.fields.file.url}` : 'not found';
@@ -42,6 +48,10 @@ const prettifyEvent = ev => {
   };
 };
 
+/**
+ * See above. Provides better formatting for transit
+ * @param {Object} member Member to format
+ */
 const formatCommitteeMember = member => ({
   id: member.sys.id,
   updated: member.sys.updatedAt,

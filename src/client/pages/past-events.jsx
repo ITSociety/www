@@ -10,7 +10,7 @@ export default class PastEventsPage extends Component {
     this.state = { children: <Loading /> };
   }
 
-  async componentDidMount() {
+  async componentWillMount() {
     const oldEvents = await getEndpoint('/api/contentful/events/past');
     // do some parsing and present nicely
   }

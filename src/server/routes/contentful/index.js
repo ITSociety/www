@@ -73,6 +73,18 @@ contentfulApi.get('/committee', async (req, res) => {
 
 contentfulApi.get('/committee/:id', async (req, res) => {
   const { id } = req.params;
+  const members = await getCommittee();
+  const member = members.filter(mbr => mbr.sys.id === id)[0];
+  const formatted = {
+    id: member.sys.id,
+    updated: member.sys.updatedAt,
+    name: member.fields.memberName,
+    year: member.fields.committeeYear,
+    image: `https:${member.fields.memberPicture.fields.file.url}`,
+    role: member.fields.memberRole,
+    email: member.fields.memberEmailAddress,
+  };
+  res.json(formatted);
 });
 
 
