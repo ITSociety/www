@@ -1,12 +1,10 @@
 const express = require('express');
-const contentful = require('contentful');
+const { client, getEntry, prettifyEvent } = require('./util');
 
 const contentfulApi = express.Router();
 
-const client = contentful.createClient({
-  space: process.env.CONTENTFUL_SPACE,
-  accessToken: process.env.CONTENTFUL_ACCESS,
-});
+const getEvents = getEntry('event');
+const getCommittee = getEntry('committee');
 
 // main welcome
 contentfulApi.get('/', (req, res) => res.send('Welcome to Contentful API'));
@@ -14,25 +12,6 @@ contentfulApi.get('/', (req, res) => res.send('Welcome to Contentful API'));
 /**
  * events api
  */
-
-
-// abstract Contentful#getEntries in to something nicer to use
-const getEntry = entry => async () => {
-  const query = { include: 3, content_type: entry };
-  const { items } = await client.getEntries(query);
-  return items;
-};
-
-
-// in order to save on network traffic, only send import info
-const prettifyEvent = ev => ({
-  id: ev.sys.id,
-  name: ev.fields.eventName,
-  start: ev.fields.startTime,
-  details: ev.fields.additionalDetails,
-});
-
-const getEvents = getEntry('event');
 
 // GET all events
 contentfulApi.get('/events', async (req, res) => {
