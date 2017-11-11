@@ -1,12 +1,12 @@
 const express = require('express');
 const {
-  client, getEntry, prettifyEvent, sortEvents,
+  client, getEntry, prettifyEvent, sortEvents, formatCommitteeMember,
 } = require('./util');
 
 const contentfulApi = express.Router();
 
 const getEvents = getEntry('event');
-const getCommittee = getEntry('committee');
+const getCommittee = getEntry('committeeMember');
 
 // main welcome
 contentfulApi.get('/', (req, res) => res.send('Welcome to Contentful API'));
@@ -28,11 +28,11 @@ contentfulApi.get('/events/:classifier', async (req, res) => {
   const events = await getEvents();
   const now = new Date();
   // assume that the user's after the most recent events
-  let filtered = events.filter(ev => new Date(ev.fields.startTime) > now);
+  let filtered = events.filter(ev => new Date(ev.fields.startTime) < now);
 
   // if we're after previous events
-  if (classifier.toLowerCase() === 'past') {
-    filtered = events.filter(ev => new Date(ev.fields.startTime) < now);
+  if (classifier.toLowerCase() === 'future') {
+    filtered = events.filter(ev => new Date(ev.fields.startTime) > now);
   }
   const resp = filtered.sort(sortEvents).map(prettifyEvent);
   res.json(resp);
@@ -66,7 +66,9 @@ contentfulApi.get('/event/:id', async (req, res) => {
  * committee api
  */
 contentfulApi.get('/committee', async (req, res) => {
-
+  const committeeMembers = await getCommittee();
+  const prettyMembers = committeeMembers.map(formatCommitteeMember);
+  res.json(prettyMembers);
 });
 
 contentfulApi.get('/committee/:id', async (req, res) => {

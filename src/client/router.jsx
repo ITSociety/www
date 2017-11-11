@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import Layout from './layout.jsx';
-import { Home, EventPage } from './pages';
+import { Home, EventPage, AboutPage, PastEventsPage } from './pages';
 
 const onUpdate = () => window.scrollTo(0, 0);
 
@@ -13,6 +13,8 @@ const App = () => (
     <Switch>
       <Layout>
         <Route path="/event/:id" component={EventPage} />
+        <Route exact path="/about" component={AboutPage} />
+        <Route exact path="/past-events" component={PastEventsPage} />
         <Route exact path="/" component={Home} />
       </Layout>
     </Switch>

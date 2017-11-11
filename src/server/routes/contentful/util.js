@@ -13,6 +13,11 @@ const getEntry = entry => async () => {
   return items;
 };
 
+/**
+ * Sorts event by their startTime field.
+ * @param {Object} ev1 First event for comparison
+ * @param {Object} ev2 Second event for comparison
+ */
 const sortEvents = (ev1, ev2) => {
   const ev1Start = new Date(ev1.fields.startTime);
   const ev2Start = new Date(ev2.fields.startTime);
@@ -24,18 +29,34 @@ const sortEvents = (ev1, ev2) => {
   return 0;
 };
 
-// in order to save on network traffic, only send import info
-const prettifyEvent = ev => ({
-  id: ev.sys.id,
-  name: ev.fields.eventName,
-  start: ev.fields.startTime,
-  details: ev.fields.additionalDetails,
+// in order to save on network traffic, only send import information
+const prettifyEvent = ev => {
+  const { sys, fields } = ev;
+  const image = 'optionalImage' in fields ? `https:${fields.optionalImage.fields.file.url}` : 'not found';
+  return {
+    id: sys.id,
+    name: fields.eventName,
+    start: fields.startTime,
+    details: fields.additionalDetails,
+    image,
+  };
+};
+
+const formatCommitteeMember = member => ({
+  id: member.sys.id,
+  updated: member.sys.updatedAt,
+  name: member.fields.memberName,
+  year: member.fields.committeeYear,
+  image: `https:${member.fields.memberPicture.fields.file.url}`,
+  role: member.fields.memberRole,
+  email: member.fields.memberEmailAddress,
 });
 
 
 module.exports = {
-  client,
-  getEntry,
+  formatCommitteeMember,
   prettifyEvent,
   sortEvents,
+  getEntry,
+  client,
 };

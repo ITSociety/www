@@ -7,8 +7,8 @@ import Button from 'material-ui/Button';
 import Grid from 'material-ui/Grid';
 
 
-import Loading from './loading.jsx';
-import { getEndpoint, markdownToReact } from '../util.jsx';
+import Loading from '../loading.jsx';
+import { getEndpoint, markdownToReact } from '../../util.jsx';
 
 const parseEvents = events => events.map(event => {
   const {

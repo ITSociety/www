@@ -3,14 +3,12 @@ import { Link } from 'react-router-dom';
 import marked from 'marked';
 import htmlToReact from 'html-react-parser';
 
-
 marked.setOptions({
   gfm: true,
   sanitize: true,
   smartypants: true,
   breaks: true,
 });
-
 
 module.exports = {
   listToLink: link => link.map(item => {
