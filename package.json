@@ -33,6 +33,7 @@
     "express": "^4.16.2",
     "helmet": "^3.9.0",
     "html-react-parser": "^0.4.0",
+    "loadjs": "^3.5.1",
     "local-env-var": "^1.0.4",
     "marked": "^0.3.6",
     "material-ui": "next",

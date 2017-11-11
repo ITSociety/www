@@ -2893,6 +2893,10 @@ loader-utils@^1.0.2, loader-utils@^1.1.0:
     emojis-list "^2.0.0"
     json5 "^0.5.0"
 
+loadjs@^3.5.1:
+  version "3.5.1"
+  resolved "https://registry.yarnpkg.com/loadjs/-/loadjs-3.5.1.tgz#01ce858f841d4f424a018214642e03f2f9a9dfde"
+
 local-env-var@^1.0.4:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/local-env-var/-/local-env-var-1.0.4.tgz#b7606398c4a33824fed2b78c71836ef538337466"

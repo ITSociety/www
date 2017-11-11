@@ -11,18 +11,19 @@ import Loading from './loading.jsx';
 import { getEndpoint, markdownToReact } from '../util.jsx';
 
 const parseEvents = events => events.map(event => {
-  const { eventName: name, additionalDetails, startTime } = event.fields;
-  const start = new Date(startTime);
-  const distance = distanceInWords((new Date()), start);
-  const additional = markdownToReact(additionalDetails);
-  const { id } = event.sys;
+  const {
+    name, details, start, id,
+  } = event;
+  const startTime = new Date(start);
+  const distance = distanceInWords((new Date()), startTime);
+  const parsed = markdownToReact(details);
   return (
     <Grid className="event-card-grid-item" key={name} item xs={12} sm={6} md={6}>
       <Card className="event-card">
         <CardContent>
           <Typography type="headline" component="h3">{name}</Typography>
           <Typography type="body1" className="event-time">{distance}</Typography>
-          {additional}
+          {parsed}
         </CardContent>
         <CardActions>
           <Link to={`/event/${id}`}>
@@ -40,13 +41,12 @@ export default class Events extends Component {
   constructor(props) {
     super(props);
     this.state = { children: <Loading /> };
-    this.parseEvents = parseEvents.bind(this);
   }
 
   async componentWillMount() {
     const events = await getEndpoint('/api/contentful/events');
     if (events.length % 2 === 1) events.pop();
-    const children = this.parseEvents(events);
+    const children = parseEvents(events);
     this.setState({ children });
   }
 
