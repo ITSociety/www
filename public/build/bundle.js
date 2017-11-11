@@ -62748,7 +62748,7 @@ var generatePage = function generatePage(info) {
     { className: 'event' },
     _react2.default.createElement(
       _Typography2.default,
-      { type: 'display3', className: 'event-title' },
+      { type: 'display3', gutterBottom: true, className: 'event-title' },
       name
     ),
     _react2.default.createElement(

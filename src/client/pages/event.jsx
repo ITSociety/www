@@ -25,7 +25,7 @@ const generatePage = info => {
   const loc = { lat: location.lat, lng: location.lon };
   return (
     <div className="event">
-      <Typography type="display3" className="event-title">{name}</Typography>
+      <Typography type="display3" gutterBottom className="event-title">{name}</Typography>
       <div className="event-timings">
         <Icon color="action">date_range</Icon>
         <Typography type="display1" className="event-date">{humanDate}</Typography>

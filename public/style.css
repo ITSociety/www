@@ -245,7 +245,7 @@ body {
 }
 
 .event-details h1, .event-details h2 {
-  font-weight: 400;
+  font-weight: 300;
 }
 
 .event-media-map, .map-container { display: flex }
@@ -253,6 +253,23 @@ body {
 #map {
   min-height: 400px;
   width: 400px;
+}
+
+.event-timings {
+  margin-bottom: 12px;
+}
+
+.event-timings, .event-cost {
+  display: flex;
+}
+
+.event-timings h1, .event-cost h1 {
+  font-weight: 300;
+}
+
+.event-timings span, .event-cost span {
+  font-size: 40px;
+  opacity: 0.7;
 }
 
 .event-timings > *, .event-cost > * {
@@ -264,10 +281,10 @@ body {
   margin-right: 16px;
 }
 
-.event-timings {
-  margin-bottom: 16px;
-}
-
 .event-cost {
   margin-bottom: 24px;
+}
+
+.event-title {
+  font-weight: 300;
 }
