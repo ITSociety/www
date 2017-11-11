@@ -13,6 +13,16 @@ const getEntry = entry => async () => {
   return items;
 };
 
+const sortEvents = (ev1, ev2) => {
+  const ev1Start = new Date(ev1.fields.startTime);
+  const ev2Start = new Date(ev2.fields.startTime);
+  if (ev1Start < ev2Start) {
+    return 1;
+  } else if (ev1Start > ev2Start) {
+    return -1;
+  }
+  return 0;
+};
 
 // in order to save on network traffic, only send import info
 const prettifyEvent = ev => ({
@@ -27,4 +37,5 @@ module.exports = {
   client,
   getEntry,
   prettifyEvent,
+  sortEvents,
 };

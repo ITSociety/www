@@ -1,5 +1,7 @@
 const express = require('express');
-const { client, getEntry, prettifyEvent } = require('./util');
+const {
+  client, getEntry, prettifyEvent, sortEvents,
+} = require('./util');
 
 const contentfulApi = express.Router();
 
@@ -16,7 +18,7 @@ contentfulApi.get('/', (req, res) => res.send('Welcome to Contentful API'));
 // GET all events
 contentfulApi.get('/events', async (req, res) => {
   const events = await getEvents();
-  const parsed = events.map(prettifyEvent);
+  const parsed = events.sort(sortEvents).map(prettifyEvent);
   res.json(parsed);
 });
 
@@ -32,7 +34,7 @@ contentfulApi.get('/events/:classifier', async (req, res) => {
   if (classifier.toLowerCase() === 'past') {
     filtered = events.filter(ev => new Date(ev.fields.startTime) < now);
   }
-  const resp = filtered.map(prettifyEvent);
+  const resp = filtered.sort(sortEvents).map(prettifyEvent);
   res.json(resp);
 });
 

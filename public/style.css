@@ -78,8 +78,8 @@ body {
 }
 
 .home {
-  height: 100%;
   background-color: #f5f5f5;
+  padding-bottom: 40px;
 }
 
 .menu-button { height: 100%; }
@@ -162,7 +162,7 @@ body {
   font-weight: 400;
 }
 
-.event-card a, .event-card a span { 
+a, a span { 
   text-decoration: none; 
   color: #7e57c2;
 }
@@ -173,7 +173,6 @@ body {
 
 .footer-main {
   width: 100%;
-  margin-top: 40px;
   font-family: 'Roboto', sans-serif;  
   color: #eceff1;
   
