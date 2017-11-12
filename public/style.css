@@ -79,6 +79,9 @@ body {
 
 .home {
   background-color: #f5f5f5;
+}
+
+.page {
   padding-bottom: 40px;
 }
 
@@ -290,4 +293,40 @@ a, a span {
 
 .about {
   padding-bottom: 40px;
+}
+
+.committee-image {
+  height: 150px;
+  width: 150px;
+  margin-bottom: 24px;
+  border-radius: 300px;
+  background-size: contain;
+}
+
+.committee-container {
+  margin-bottom:64px;
+  transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  padding: 16px 0;
+}
+
+.committee-container, .committee-clickable {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.committee-container:hover {
+  box-shadow: 0 4px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12), 0 2px 4px -1px rgba(0,0,0,0.3);
+}
+
+.committee-container h2, .committee-container h3 {
+  font-weight: 300;
+}
+
+.about-title {
+  margin: 64px;
+}
+
+.member-role {
+  font-weight: 300;
 }

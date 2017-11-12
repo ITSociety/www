@@ -66,9 +66,11 @@ export default class EventPage extends Component {
 
   render() {
     return (
-      <Grid container spacing={0} alignItems="stretch" justify="space-around" className="gutter">
-        {this.state.children}
-      </Grid>
+      <div className="page">
+        <Grid container spacing={40} alignItems="stretch" justify="space-around" className="gutter">
+          {this.state.children}
+        </Grid>
+      </div>
     );
   }
 }
