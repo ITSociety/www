@@ -13,7 +13,7 @@ const client = contentful.createClient({
 const getEntry = entry => async () => {
   const query = { include: 3, content_type: entry };
   const { items } = await client.getEntries(query);
-  return items;
+  return items.filter(it => 'fields' in it);
 };
 
 /**
@@ -36,8 +36,7 @@ const sortEvents = (ev1, ev2) => {
  *  in order to save on network traffic, only send import information
  * @param {Object} ev Event to format
  */
-const prettifyEvent = ev => {
-  const { sys, fields } = ev;
+const prettifyEvent = ({ sys, fields }) => {
   const image = 'optionalImage' in fields ? `https:${fields.optionalImage.fields.file.url}` : 'not found';
   return {
     id: sys.id,
@@ -52,14 +51,14 @@ const prettifyEvent = ev => {
  * See above. Provides better formatting for transit
  * @param {Object} member Member to format
  */
-const formatCommitteeMember = member => ({
-  id: member.sys.id,
-  updated: member.sys.updatedAt,
-  name: member.fields.memberName,
-  year: member.fields.committeeYear,
-  image: `https:${member.fields.memberPicture.fields.file.url}`,
-  role: member.fields.memberRole,
-  email: member.fields.memberEmailAddress,
+const formatCommitteeMember = ({ sys, fields }) => ({
+  id: sys.id,
+  updated: sys.updatedAt,
+  name: fields.memberName,
+  year: fields.committeeYear,
+  image: `https:${fields.memberPicture.fields.file.url}`,
+  role: fields.memberRole,
+  email: fields.memberEmailAddress,
 });
 
 
