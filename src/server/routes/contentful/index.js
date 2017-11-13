@@ -42,7 +42,7 @@ contentfulApi.get('/events/:classifier', async (req, res) => {
 contentfulApi.get('/event/:id', async (req, res) => {
   const { id } = req.params;
   const event = await client.getEntry(id);
-  const { fields, sys } = event;
+  const { sys, fields } = event;
 
   // format the event nicely
   const resp = {
@@ -75,14 +75,16 @@ contentfulApi.get('/committee/:id', async (req, res) => {
   const { id } = req.params;
   const members = await getCommittee();
   const member = members.filter(mbr => mbr.sys.id === id)[0];
+  const { sys, fields } = member;
   const formatted = {
-    id: member.sys.id,
-    updated: member.sys.updatedAt,
-    name: member.fields.memberName,
-    year: member.fields.committeeYear,
-    image: `https:${member.fields.memberPicture.fields.file.url}`,
-    role: member.fields.memberRole,
-    email: member.fields.memberEmailAddress,
+    id: sys.id,
+    updated: sys.updatedAt,
+    name: fields.memberName,
+    year: fields.committeeYear,
+    image: `https:${fields.memberPicture.fields.file.url}`,
+    role: fields.memberRole,
+    email: fields.memberEmailAddress,
+    content: fields.memberContent,
   };
   res.json(formatted);
 });

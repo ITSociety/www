@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
+import Card, { CardContent, CardMedia } from 'material-ui/Card';
+import Typography from 'material-ui/Typography';
+import Grid from 'material-ui/Grid';
+
 import { Loading } from '../partial';
 import { getEndpoint, markdownToReact } from '../util.jsx';
-import Grid from 'material-ui/Grid';
-import Typography from 'material-ui/Typography';
-import Card, { CardContent, CardMedia } from 'material-ui/Card';
-import Icon from 'material-ui/Icon';
 
 const generatePage = member => (
   <div className="member">
@@ -16,6 +16,9 @@ const generatePage = member => (
           <Typography type="headline" component="h2" color="secondary">
             {member.role}
           </Typography>
+        </div>
+        <div className="member-para">
+          {markdownToReact(member.content)}
         </div>
       </CardContent>
     </Card>

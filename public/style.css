@@ -362,3 +362,16 @@ a, a span {
 .member-headline h1 {
   color: #000;
 }
+
+.member-headline, .member-para {
+  margin-top: auto;
+}
+
+.member-para {
+  font-family: 'Roboto', sans-serif;
+}
+.member-para > p {
+  margin: 8px 0;
+  color: #0e0e0eb5;
+  font-size: 14px;
+}
