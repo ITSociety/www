@@ -137,6 +137,10 @@ body {
 
 .hero-links a:hover { background-color: #ede7f6; }
 
+.event {
+  margin-top: 24px;
+}
+
 .events-title, .about-title {
   margin: 24px 0;
   font-weight: 300;
@@ -329,4 +333,32 @@ a, a span {
 
 .member-role {
   font-weight: 300;
+}
+
+.member { width: 100%; }
+
+.member-card {
+  display: flex;
+  flex-direction: row;
+}
+
+.member-image {
+  height: 400px;
+  width: 400px;
+}
+
+.member-content {
+  display: flex;
+  margin-left: 24px;
+  justify-content: center;
+  flex-direction: column;
+  flex: 1;
+}
+
+.member-headline * {
+  font-weight: 300;
+}
+
+.member-headline h1 {
+  color: #000;
 }
