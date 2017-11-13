@@ -7,6 +7,7 @@
     "start": "node bin/www",
     "dev": "nodemon bin/www",
     "build": "webpack",
+    "postinstall": "webpack",
     "watch": "webpack -w"
   },
   "repository": {
