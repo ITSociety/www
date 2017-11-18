@@ -37,7 +37,6 @@ export default class MemberPage extends Component {
   async componentWillMount() {
     const url = `/api/contentful/committee/${this.id}`;
     const memberInfo = await getEndpoint(url);
-    console.log(memberInfo);
     const children = generatePage(memberInfo);
     this.setState({ children });
   }
