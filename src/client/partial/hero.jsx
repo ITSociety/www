@@ -11,12 +11,12 @@ const heroLinks = [
 
 
 export default () => (
-  <div className="hero-main gutter">
-    <div className="hero-banner">
+  <div className="hero-main">
+    <div className="hero-banner gutter">
       <img className="hero-image banner-item" src="/public/favicon.png" alt="IT Society Logo" />
       <Typography type="display4" className="banner-item">The IT Society</Typography>
     </div>
-    <div className="hero-link-wrapper">
+    <div className="hero-link-wrapper gutter">
       <ul className="hero-links">
         {listToLink(heroLinks)}
       </ul>

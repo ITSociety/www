@@ -27,10 +27,14 @@ const generatePage = info => {
     <div className="event">
       <Typography type="display3" gutterBottom className="event-title">{name}</Typography>
       <div className="event-timings">
-        <Icon color="action">date_range</Icon>
-        <Typography type="display1" className="event-date">{humanDate}</Typography>
-        <Icon color="action">access_time</Icon>
-        <Typography type="display1" className="event-date">{humanTime}</Typography>
+        <span className="info">
+          <Icon color="action">date_range</Icon>
+          <Typography type="display1" className="event-date">{humanDate}</Typography>
+        </span>
+        <span className="info">
+          <Icon color="action">access_time</Icon>
+          <Typography type="display1" className="event-date">{humanTime}</Typography>
+        </span>
       </div>
       <div className="event-cost">
         <Icon color="action">attach_money</Icon>

@@ -6,7 +6,7 @@ import MediaQuery from 'react-responsive';
 import { listToLink } from '../util.jsx';
 
 const Burger = () => (
-  <MediaQuery maxWidth={960}>
+  <MediaQuery maxWidth={540}>
     <IconButton className="menu-button" aria-label="Menu">
       <MenuIcon />
     </IconButton>
@@ -20,11 +20,6 @@ const menuItems = [
 ];
 
 const Appbar = ({ className }) => {
-  // const renderedMenuItems = menuItems.map(item => (
-  //   <li key={item.title} className={item.className || ''}>
-  //     <a href={item.link}>{item.title}</a>
-  //   </li>
-  // ));
   const renderedMenuItems = listToLink(menuItems);
 
   return (
