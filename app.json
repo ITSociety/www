@@ -1,0 +1,22 @@
+{
+  "name": "soc-site-new",
+  "scripts": {
+    "postdeploy": "webpack"
+  },
+  "env": {
+    "CONTENTFUL_SPACE": {
+      "required": true
+    },
+    "CONTENTFUL_ACCESS": {
+      "required": true
+    }
+  },
+  "formation": {
+  },
+  "addons": [
+
+  ],
+  "buildpacks": [
+
+  ]
+}
