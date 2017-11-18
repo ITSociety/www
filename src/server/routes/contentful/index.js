@@ -1,5 +1,9 @@
 const express = require('express');
 const {
+  getByKey, setKey, getKeys, delKey,
+} = require('./db-helper');
+
+const {
   client, getEntry, prettifyEvent, sortEvents, formatCommitteeMember,
 } = require('./util');
 
