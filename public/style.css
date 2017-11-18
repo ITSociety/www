@@ -106,6 +106,7 @@ body {
 }
 
 .hero-banner > .banner-item {
+  text-align: center;
   margin: 24px 16px;
 }
 
@@ -261,7 +262,7 @@ a, a span {
   width: 400px;
 }
 
-.event-timings {
+.event-timings > span {
   margin-bottom: 12px;
 }
 
@@ -282,9 +283,21 @@ a, a span {
   display: inline-block;
 }
 
-.event-timings > h1, .event-cost > h1 {
+.event-timings h1, .event-cost h1 {
   margin-left: 8px;
   margin-right: 16px;
+}
+
+.event-timings h1 {
+  color: #000;
+}
+
+.event-cost h1 {
+  color: #4a4a4a;
+}
+
+.info {
+  display: flex;
 }
 
 .event-cost {
@@ -348,6 +361,7 @@ a, a span {
 }
 
 .member-content {
+  margin-top: 50%;
   display: flex;
   margin-left: 24px;
   justify-content: center;
@@ -391,10 +405,38 @@ a, a span {
   .map-container {
     max-width: 100%;
   }
+
+  .event-timings {
+    flex-direction: column;
+  }
+
+  .map-container, #map {
+    width: 100%;
+  }
+
+  .member-card {
+    flex-direction: column;
+  }
+
+  .member-image {
+    width: 100%;  
+  }
+
+  .member-content {
+    margin-top: 0;
+  }
 }
 
 @media screen and (max-width: 540px) {
   .menu-items {
     display: none;
+  }
+
+  .hero-link-wrapper.gutter {
+    padding: 0;
+  }
+
+  .hero-links {
+    padding-left: 0;
   }
 }
