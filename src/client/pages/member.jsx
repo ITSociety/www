@@ -10,17 +10,19 @@ const generatePage = member => (
   <div className="member">
     <Card className="member-card">
       <CardMedia image={member.image} className="member-image" />
-      <CardContent className="member-content">
-        <div className="member-headline">
-          <Typography type="display1">{member.name}</Typography>
-          <Typography type="headline" component="h2" color="secondary">
-            {member.role}
-          </Typography>
-        </div>
-        <div className="member-para">
-          {markdownToReact(member.content)}
-        </div>
-      </CardContent>
+      <div className="member-content-container">
+        <CardContent className="member-content">
+          <div className="member-headline">
+            <Typography type="display1">{member.name}</Typography>
+            <Typography type="headline" component="h2" color="secondary">
+              {member.role}
+            </Typography>
+          </div>
+          <div className="member-para">
+            {markdownToReact(member.content)}
+          </div>
+        </CardContent>
+      </div>
     </Card>
   </div>
 );
