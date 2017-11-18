@@ -18,7 +18,7 @@ const parseEvents = events => events.map(event => {
   const distance = distanceInWords((new Date()), startTime, { addSuffix: true });
   const parsed = markdownToReact(details);
   return (
-    <Grid className="event-card-grid-item" key={name} item xs={12} sm={6} md={6}>
+    <Grid className="event-card-grid-item" key={name} item xs={12} sm={12} md={6}>
       <Card className="event-card">
         <CardContent>
           <Typography type="headline" component="h3">{name}</Typography>

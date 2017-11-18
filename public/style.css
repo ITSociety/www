@@ -375,3 +375,26 @@ a, a span {
   color: #0e0e0eb5;
   font-size: 14px;
 }
+
+@media screen and (max-width: 960px) {
+  .hero-banner {
+    flex-direction: column;
+  }
+  h1.banner-item {
+    text-align: center;
+  }
+
+  .event-detail-card-container {
+    flex-direction: column;
+  }
+
+  .map-container {
+    max-width: 100%;
+  }
+}
+
+@media screen and (max-width: 540px) {
+  .menu-items {
+    display: none;
+  }
+}
