@@ -20,7 +20,7 @@
     "url": "https://github.com/hjfitz/soc-site-new/issues"
   },
   "engines": {
-    "node": "^9.1.x"
+    "node": "^8.9.1"
   },
   "homepage": "https://github.com/hjfitz/soc-site-new#readme",
   "dependencies": {
