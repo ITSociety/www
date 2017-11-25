@@ -53,13 +53,14 @@ export default class Appbar extends Component {
   }
 
   render() {
+    const { toggleDrawer, state } = this;
     const renderedMenuItems = listToLink(menuItems);
     const sideNavItems = <List className="sidenav">{renderedMenuItems}</List>;
     return (
       <div className={`appbar ${this.props.className}`}>
         <div className="appbar-inner gutter">
           <Burger onClick={this.toggleDrawer} />
-          <Sidenav open={this.state.drawerOpen} onClose={this.toggleDrawer} menuItems={sideNavItems} />
+          <Sidenav open={state.drawerOpen} onClose={toggleDrawer} menuItems={sideNavItems} />
           <ul className="menu-items">{renderedMenuItems}</ul>
         </div>
       </div>

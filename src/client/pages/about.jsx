@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import Grid from 'material-ui/Grid';
-import Card, { CardActions, CardContent, CardMedia } from 'material-ui/Card';
-import Button from 'material-ui/Button';
 import { Link } from 'react-router-dom';
 
 import Typography from 'material-ui/Typography';
