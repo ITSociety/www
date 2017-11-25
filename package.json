@@ -8,7 +8,10 @@
     "dev": "nodemon bin/www",
     "build": "webpack",
     "postinstall": "webpack",
-    "watch": "webpack -w"
+    "watch": "webpack -w",
+    "heroku": "heroku local",
+    "sync": "browser-sync start --proxy localhost:5000 --files pulbic/**",
+    "lint": "eslint src/**/*.js{x,}"
   },
   "repository": {
     "type": "git",
