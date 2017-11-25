@@ -390,6 +390,23 @@ a, a span {
   font-size: 14px;
 }
 
+.sidenav {
+  width: 250px;
+  padding-left: 32px;
+  font-family: 'Roboto';
+}
+
+.sidenav li {
+  line-height: 24px;
+  padding: 8px;
+}
+
+.sidenav a {
+  color: #000;
+  height: 24px;
+  display: block;
+}
+
 @media screen and (max-width: 960px) {
   .hero-banner {
     flex-direction: column;
@@ -428,15 +445,20 @@ a, a span {
 }
 
 @media screen and (max-width: 540px) {
-  .menu-items {
-    display: none;
-  }
 
-  .hero-link-wrapper.gutter {
-    padding: 0;
-  }
+  .gutter { padding: 0!important; }
 
-  .hero-links {
-    padding-left: 0;
-  }
+  .footer-content, .footer-tagline { padding-left: 32px!important; }
+
+  .events-events > div { max-width: 100%; }
+
+  .hero-link-wrapper.gutter { padding: 0; }
+
+  .event-header, .events-title { margin-left: 16px; }
+
+  .about-title { text-align: center }
+
+  .hero-links { padding-left: 0; }
+
+  .menu-items { display: none; }
 }

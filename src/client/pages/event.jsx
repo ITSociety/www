@@ -25,20 +25,22 @@ const generatePage = info => {
   const loc = { lat: location.lat, lng: location.lon };
   return (
     <div className="event">
-      <Typography type="display3" gutterBottom className="event-title">{name}</Typography>
-      <div className="event-timings">
-        <span className="info">
-          <Icon color="action">date_range</Icon>
-          <Typography type="display1" className="event-date">{humanDate}</Typography>
-        </span>
-        <span className="info">
-          <Icon color="action">access_time</Icon>
-          <Typography type="display1" className="event-date">{humanTime}</Typography>
-        </span>
-      </div>
-      <div className="event-cost">
-        <Icon color="action">attach_money</Icon>
-        <Typography type="display1" className="event-date">{parsedPrice}</Typography>
+      <div className="event-header">
+        <Typography type="display3" gutterBottom className="event-title">{name}</Typography>
+        <div className="event-timings">
+          <span className="info">
+            <Icon color="action">date_range</Icon>
+            <Typography type="display1" className="event-date">{humanDate}</Typography>
+          </span>
+          <span className="info">
+            <Icon color="action">access_time</Icon>
+            <Typography type="display1" className="event-date">{humanTime}</Typography>
+          </span>
+        </div>
+        <div className="event-cost">
+          <Icon color="action">attach_money</Icon>
+          <Typography type="display1" className="event-date">{parsedPrice}</Typography>
+        </div>
       </div>
       <Card className="event-detail-card">
         <div className="event-detail-card-container">
