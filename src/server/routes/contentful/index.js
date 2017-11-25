@@ -42,16 +42,19 @@ contentfulApi.get('/events/:classifier', async (req, res) => {
   }
   logger('Prettifying events @ GET /events/:classifier');
   const resp = filtered.sort(sortEvents).map(prettifyEvent);
+  logger('Sending events @ GET /events/:classifier');
   res.json(resp);
 });
 
 // GET an event of a certain id
 contentfulApi.get('/event/:id', async (req, res) => {
   const { id } = req.params;
+  logger(`Attempting to serve event with ID ${id} @ GET /event:/id`);
   const event = await client.getEntry(id);
   const { sys, fields } = event;
 
   // format the event nicely
+  logger('Parsing contentful response @ GET /event/:id');
   const resp = {
     id: sys.id,
     name: fields.eventName,
@@ -65,6 +68,7 @@ contentfulApi.get('/event/:id', async (req, res) => {
     },
     lastUpdated: sys.updatedAt,
   };
+  logger('Sending event @ GET /event/:id');
   res.json(resp);
 });
 
