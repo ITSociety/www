@@ -2,6 +2,7 @@ const express = require('express');
 const {
   client, getEntry, prettifyEvent, sortEvents, formatCommitteeMember,
 } = require('./util');
+const logger = require('../../../logger')('contentful');
 
 const contentfulApi = express.Router();
 
@@ -17,16 +18,21 @@ contentfulApi.get('/', (req, res) => res.send('Welcome to Contentful API'));
 
 // GET all events
 contentfulApi.get('/events', async (req, res) => {
+  logger('Attempting to serve events', 'GET /events');
   const events = await getEvents();
+  logger('Attempting to parse events', 'GET /events');
   const parsed = events.sort(sortEvents).map(prettifyEvent);
+  logger('Sending events to client', 'GET /events');
   res.json(parsed);
 });
 
 // GET only old or new events
 contentfulApi.get('/events/:classifier', async (req, res) => {
   const { classifier } = req.params;
+  logger('Attempting to get events from contentful', 'GET /events/:classifier');
   const events = await getEvents();
   const now = new Date();
+  logger('Filtering events', 'GET /events/:classifier');
   // assume that the user's after the most recent events
   let filtered = events.filter(ev => new Date(ev.fields.startTime) < now);
 
@@ -34,17 +40,21 @@ contentfulApi.get('/events/:classifier', async (req, res) => {
   if (classifier.toLowerCase() === 'future') {
     filtered = events.filter(ev => new Date(ev.fields.startTime) > now);
   }
+  logger('Prettifying events', 'GET /events/:classifier');
   const resp = filtered.sort(sortEvents).map(prettifyEvent);
+  logger('Sending events', 'GET /events/:classifier');
   res.json(resp);
 });
 
 // GET an event of a certain id
 contentfulApi.get('/event/:id', async (req, res) => {
   const { id } = req.params;
+  logger(`Attempting to serve event with ID ${id}', 'GET /event:/id`);
   const event = await client.getEntry(id);
   const { sys, fields } = event;
 
   // format the event nicely
+  logger('Parsing contentful response', 'GET /event/:id');
   const resp = {
     id: sys.id,
     name: fields.eventName,
@@ -58,6 +68,7 @@ contentfulApi.get('/event/:id', async (req, res) => {
     },
     lastUpdated: sys.updatedAt,
   };
+  logger('Sending event', 'GET /event/:id');
   res.json(resp);
 });
 
