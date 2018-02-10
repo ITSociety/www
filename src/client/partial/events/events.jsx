@@ -7,8 +7,8 @@ import Button from 'material-ui/Button';
 import Grid from 'material-ui/Grid';
 
 
-import Loading from '../loading.jsx';
-import { getEndpoint, markdownToReact } from '../../util.jsx';
+import Loading from '../loading';
+import { getEndpoint, markdownToReact } from '../../util';
 
 const parseEvents = events => events.map(event => {
   const {
@@ -44,8 +44,7 @@ export default class Events extends Component {
   }
 
   async componentWillMount() {
-    const events = await getEndpoint('/api/contentful/events');
-    if (events.length % 2 === 1) events.pop();
+    const events = await getEndpoint('/api/contentful/events/future');
     const children = parseEvents(events);
     this.setState({ children });
   }

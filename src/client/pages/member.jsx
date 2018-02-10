@@ -4,7 +4,7 @@ import Typography from 'material-ui/Typography';
 import Grid from 'material-ui/Grid';
 
 import { Loading } from '../partial';
-import { getEndpoint, markdownToReact } from '../util.jsx';
+import { getEndpoint, markdownToReact } from '../util';
 
 const generatePage = member => (
   <div className="member">

@@ -1,24 +1,26 @@
 /**
  * Keep the server in it's own file.
- * Eventually, we may see a websocket server here
  */
 
 // main deps
 const http = require('http');
-require('local-env-var')();
+const socket = require('../src/server/socket');
+require('local-env-var');
 
 // load our app to serve
 const app = require('../app');
 
 // default to a given port
-const port = process.env.PORT || 5000;
+const port = parseInt(process.env.PORT, 10) || 5000;
 
 app.set('port', port);
 
+// create and start a HTTP server
 const server = http.createServer(app);
-
 server.listen(port);
 
-// inform us of the running server
+// bind a websocket to the http server
+socket.init(server);
+
 /* eslint-disable */
 server.on("listening", () => console.log(`Server running on port ${port}`));

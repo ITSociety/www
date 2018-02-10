@@ -7,7 +7,7 @@ import Drawer from 'material-ui/Drawer';
 import List from 'material-ui/List';
 
 
-import { listToLink } from '../util.jsx';
+import { listToLink } from '../util';
 
 const Sidenav = ({ open, onClose, menuItems }) => (
   <Drawer open={open} onRequestClose={onClose}>

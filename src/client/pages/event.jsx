@@ -6,7 +6,7 @@ import Card, { CardContent, CardMedia } from 'material-ui/Card';
 import Icon from 'material-ui/Icon';
 
 import { Loading, Map } from '../partial';
-import { getEndpoint, markdownToReact } from '../util.jsx';
+import { getEndpoint, markdownToReact } from '../util';
 
 
 const parsePrice = num => (num > 0 ? `${num.toFixed(2)}` : 'Free!');

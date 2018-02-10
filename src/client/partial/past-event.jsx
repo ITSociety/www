@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import { Loading } from '../partial';
-import { getEndpoint } from '../util.jsx';
+import { getEndpoint } from '../util';
 
 export default class PastEvent extends Component {
   constructor(props) {

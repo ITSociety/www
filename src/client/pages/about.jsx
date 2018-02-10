@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import Typography from 'material-ui/Typography';
 
 import { Loading } from '../partial';
-import { getEndpoint } from '../util.jsx';
+import { getEndpoint } from '../util';
 
 const formatCommitteeMembers = members => members.map(member => (
   <Grid item key={member.id} xs={12} sm={6} md={4} className="committee-container">
