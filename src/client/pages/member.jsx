@@ -4,7 +4,7 @@ import Typography from 'material-ui/Typography';
 import Grid from 'material-ui/Grid';
 
 import { Loading } from '../partial';
-import { getEndpoint, markdownToReact } from '../util.jsx';
+import { getEndpoint, markdownToReact } from '../util';
 
 const generatePage = member => (
   <div className="member">
@@ -37,7 +37,6 @@ export default class MemberPage extends Component {
   async componentWillMount() {
     const url = `/api/contentful/committee/${this.id}`;
     const memberInfo = await getEndpoint(url);
-    console.log(memberInfo);
     const children = generatePage(memberInfo);
     this.setState({ children });
   }

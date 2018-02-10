@@ -3,25 +3,36 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-import Layout from './layout.jsx';
-import { Home, EventPage, AboutPage, PastEventsPage, MemberPage } from './pages';
+import Layout from './layout';
+
+import {
+  Home,
+  EventPage,
+  AboutPage,
+  PastEventsPage,
+  MemberPage,
+  FourOhFour,
+  Draw,
+} from './pages';
 
 const onUpdate = () => window.scrollTo(0, 0);
 
-const App = () => (
+const App = (
   <Router onUpdate={onUpdate}>
-    <Switch>
-      <Layout>
+    <Layout>
+      <Switch>
         <Route path="/event/:id" component={EventPage} />
         <Route path="/member/:id" component={MemberPage} />
         <Route exact path="/about" component={AboutPage} />
         <Route exact path="/past-events" component={PastEventsPage} />
+        <Route exact path="/draw" component={Draw} />
         <Route exact path="/" component={Home} />
-      </Layout>
-    </Switch>
+        <Route component={FourOhFour} />
+      </Switch>
+    </Layout>
   </Router>
 );
 
 const entry = document.getElementById('react');
 
-ReactDOM.render(<App />, entry);
+ReactDOM.render(App, entry);

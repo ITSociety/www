@@ -10,6 +10,9 @@ module.exports = {
     filename: outFile,
   },
   devtool: 'source-map',
+  resolve: {
+    extensions: ['.js', '.jsx', '.json', '.css'],
+  },
   module: {
     loaders: [
       {

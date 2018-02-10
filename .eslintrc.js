@@ -16,7 +16,9 @@ module.exports = {
     "react/prop-types": 0,
     "no-console": 1,
     "no-debugger": 0,
-    "class-methods-use-this": 0
+    "class-methods-use-this": 0,
+    "object-curly-newline": 0,
+    "jsx-a11y/media-has-caption": 0
   },
   env: {
     browser: true,
