@@ -1,17 +1,7 @@
-import React from 'react';
-import IconButton from 'material-ui/IconButton';
-import MenuIcon from 'material-ui-icons/Menu';
-import MediaQuery from 'react-responsive';
+import { h } from 'preact';
 
-import { listToLink } from '../util.jsx';
+import { listToLink } from '../util';
 
-const Burger = () => (
-  <MediaQuery maxWidth={540}>
-    <IconButton className="menu-button" aria-label="Menu">
-      <MenuIcon />
-    </IconButton>
-  </MediaQuery>
-);
 
 const menuItems = [
   { link: '/', title: 'Home', className: 'selected' },
@@ -25,7 +15,6 @@ const Appbar = ({ className }) => {
   return (
     <div className={`appbar ${className}`}>
       <div className="appbar-inner gutter">
-        <Burger />
         <ul className="menu-items">{renderedMenuItems}</ul>
       </div>
     </div>

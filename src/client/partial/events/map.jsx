@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { h, Component } from 'preact';
 import loadjs from 'loadjs';
 
 import mapStyle from './mapstyle';

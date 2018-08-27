@@ -1,29 +1,26 @@
-import React, { Component } from 'react';
-import Card, { CardContent, CardMedia } from 'material-ui/Card';
-import Typography from 'material-ui/Typography';
-import Grid from 'material-ui/Grid';
+import { h, Component } from 'preact';
 
 import { Loading } from '../partial';
-import { getEndpoint, markdownToReact } from '../util.jsx';
+import { getEndpoint, markdownToReact } from '../util';
 
 const generatePage = member => (
   <div className="member">
-    <Card className="member-card">
-      <CardMedia image={member.image} className="member-image" />
+    <div className="member-card">
+      <div image={member.image} className="member-image" />
       <div className="member-content-container">
-        <CardContent className="member-content">
+        <div className="member-content">
           <div className="member-headline">
-            <Typography type="display1">{member.name}</Typography>
-            <Typography type="headline" component="h2" color="secondary">
+            <h2 type="display1">{member.name}</h2>
+            <h2 type="headline" component="h2" color="secondary">
               {member.role}
-            </Typography>
+            </h2>
           </div>
           <div className="member-para">
             {markdownToReact(member.content)}
           </div>
-        </CardContent>
+        </div>
       </div>
-    </Card>
+    </div>
   </div>
 );
 

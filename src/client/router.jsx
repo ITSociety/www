@@ -1,27 +1,19 @@
 // main imports
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { h, render } from 'preact';
+import Router from 'preact-router';
 
 import Layout from './layout.jsx';
-import { Home, EventPage, AboutPage, PastEventsPage, MemberPage } from './pages';
+import { Home, Event, About, Past, Member } from './Pages';
 
-const onUpdate = () => window.scrollTo(0, 0);
 
-const App = () => (
-  <Router onUpdate={onUpdate}>
-    <Switch>
-      <Layout>
-        <Route path="/event/:id" component={EventPage} />
-        <Route path="/member/:id" component={MemberPage} />
-        <Route exact path="/about" component={AboutPage} />
-        <Route exact path="/past-events" component={PastEventsPage} />
-        <Route exact path="/" component={Home} />
-      </Layout>
-    </Switch>
-  </Router>
-);
+render((
+  <Layout>
+    <Router>
+      <Event path="/event/:id" />
+      <Member path="/member/:id" />
+      <About path="/about" />
+      <Past path="/past-events" />
+      <Home path="/" />
+    </Router>
+  </Layout>), document.getElementById('main'));
 
-const entry = document.getElementById('react');
-
-ReactDOM.render(<App />, entry);

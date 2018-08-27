@@ -1,4 +1,4 @@
-import React from 'react';
+import { h } from 'preact';
 
 const Footer = () => (
   <div className="footer-main">
@@ -13,7 +13,7 @@ const Footer = () => (
       </div>
     </div>
     <div className="footer-tagline gutter">
-      <p>&copy; IT Society, 2017</p>
+      <p>&copy; IT Society, 2018</p>
     </div>
   </div>
 );

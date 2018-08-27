@@ -1,18 +1,14 @@
-import React, { Component } from 'react';
-import Grid from 'material-ui/Grid';
-import Typography from 'material-ui/Typography';
+import { h, Component } from 'preact';
 import format from 'date-fns/format';
-import Card, { CardContent, CardMedia } from 'material-ui/Card';
-import Icon from 'material-ui/Icon';
 
 import { Loading, Map } from '../partial';
-import { getEndpoint, markdownToReact } from '../util.jsx';
+import { getEndpoint, markdownToReact } from '../util';
 
 
 const parsePrice = num => (num > 0 ? `${num.toFixed(2)}` : 'Free!');
 
 // use an normal function as we require
-const generatePage = info => {
+const generatePage = (info) => {
   const {
     name, details, location, price, timing,
   } = info;
@@ -25,31 +21,31 @@ const generatePage = info => {
   const loc = { lat: location.lat, lng: location.lon };
   return (
     <div className="event">
-      <Typography type="display3" gutterBottom className="event-title">{name}</Typography>
+      <h2 type="display3" gutterBottom className="event-title">{name}</h2>
       <div className="event-timings">
         <span className="info">
-          <Icon color="action">date_range</Icon>
-          <Typography type="display1" className="event-date">{humanDate}</Typography>
+          <i color="action">date_range</i>
+          <h2 type="display1" className="event-date">{humanDate}</h2>
         </span>
         <span className="info">
-          <Icon color="action">access_time</Icon>
-          <Typography type="display1" className="event-date">{humanTime}</Typography>
+          <i color="action">access_time</i>
+          <h2 type="display1" className="event-date">{humanTime}</h2>
         </span>
       </div>
       <div className="event-cost">
-        <Icon color="action">attach_money</Icon>
-        <Typography type="display1" className="event-date">{parsedPrice}</Typography>
+        <i color="action">attach_money</i>
+        <h2 type="display1" className="event-date">{parsedPrice}</h2>
       </div>
-      <Card className="event-detail-card">
+      <div className="event-detail-card">
         <div className="event-detail-card-container">
-          <CardContent>
+          <div>
             <div className="event-details">{parsedDetails}</div>
-          </CardContent>
-          <CardMedia className="event-media-map">
+          </div>
+          <div className="event-media-map">
             <Map location={loc} />
-          </CardMedia>
+          </div>
         </div>
-      </Card>
+      </div>
     </div>
   );
 };

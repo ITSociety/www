@@ -1,39 +1,33 @@
-import Card, { CardActions, CardContent } from 'material-ui/Card';
-import Typography from 'material-ui/Typography';
 import { distanceInWords } from 'date-fns';
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import Button from 'material-ui/Button';
-import Grid from 'material-ui/Grid';
+import { h, Component } from 'preact';
+import { Link } from 'preact-router/match';
 
 
-import Loading from '../loading.jsx';
-import { getEndpoint, markdownToReact } from '../../util.jsx';
+import Loading from '../loading';
+import { getEndpoint, markdownToReact } from '../../util';
 
-const parseEvents = events => events.map(event => {
-  const {
-    name, details, start, id,
-  } = event;
+const parseEvents = events => events.map((event) => {
+  const { name, details, start, id } = event;
   const startTime = new Date(start);
   const distance = distanceInWords((new Date()), startTime, { addSuffix: true });
   const parsed = markdownToReact(details);
   return (
-    <Grid className="event-card-grid-item" key={name} item xs={12} sm={12} md={6}>
-      <Card className="event-card">
-        <CardContent>
-          <Typography type="headline" component="h3">{name}</Typography>
-          <Typography type="body1" className="event-time">{distance}</Typography>
+    <div className="event-card-grid-item" key={name} item xs={12} sm={12} md={6}>
+      <div className="event-card">
+        <div>
+          <h1 type="headline" component="h3">{name}</h1>
+          <h1 type="body1" className="event-time">{distance}</h1>
           {parsed}
-        </CardContent>
-        <CardActions>
+        </div>
+        <div>
           <Link to={`/event/${id}`}>
-            <Button dense color="primary">
+            <a dense color="primary">
             Learn More
-            </Button>
+            </a>
           </Link>
-        </CardActions>
-      </Card>
-    </Grid>
+        </div>
+      </div>
+    </div>
   );
 });
 
@@ -54,11 +48,11 @@ export default class Events extends Component {
   render() {
     return (
       <div className="events gutter">
-        <Typography type="display3" className="events-title">Events</Typography>
+        <h1 type="display3" className="events-title">Events</h1>
         <div className="events-events">
-          <Grid container spacing={40} alignItems="stretch" justify="space-around">
+          <div container spacing={40} alignItems="stretch" justify="space-around">
             {this.state.children}
-          </Grid>
+          </div>
         </div>
       </div>
     );

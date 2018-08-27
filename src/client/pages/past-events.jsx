@@ -1,8 +1,7 @@
-import React, { Component } from 'react';
-import Grid from 'material-ui/Grid';
+import { h, Component } from 'preact';
 
 import { Loading } from '../partial';
-import { getEndpoint, markdownToReact } from '../util.jsx';
+import { getEndpoint } from '../util';
 
 export default class PastEventsPage extends Component {
   constructor(props) {
@@ -17,10 +16,10 @@ export default class PastEventsPage extends Component {
 
   render() {
     return (
-      <Grid container spacing={0} alignItems="stretch" justify="space-around" className="gutter">
+      <div container spacing={0} alignItems="stretch" justify="space-around" className="gutter">
         <h1>//todo</h1>
         {this.state.children}
-      </Grid>
+      </div>
     );
   }
 }

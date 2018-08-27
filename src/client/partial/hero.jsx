@@ -1,7 +1,6 @@
-import Typography from 'material-ui/Typography';
-import React from 'react';
+import { h } from 'preact';
 
-import { listToLink } from '../util.jsx';
+import { listToLink } from '../util';
 
 const heroLinks = [
   { link: 'https://membership.upsu.net/group/it-society#join', title: 'Sign Up' },
@@ -14,7 +13,7 @@ export default () => (
   <div className="hero-main">
     <div className="hero-banner gutter">
       <img className="hero-image banner-item" src="/public/favicon.png" alt="IT Society Logo" />
-      <Typography type="display4" className="banner-item">The IT Society</Typography>
+      <h1 className="hero-text banner-item">The IT Society</h1>
     </div>
     <div className="hero-link-wrapper gutter">
       <ul className="hero-links">

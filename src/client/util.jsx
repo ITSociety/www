@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import { h } from 'preact';
+import { Link } from 'preact-router/match';
 import marked from 'marked';
 import htmlToReact from 'html-react-parser';
 
@@ -10,26 +10,21 @@ marked.setOptions({
   breaks: true,
 });
 
-module.exports = {
-  listToLink: link => link.map(item => {
-    const { link: url, title, className } = item;
-    let button;
-    if (url.charAt(0) === '/') {
-      button = <Link to={url}>{title}</Link>;
-    } else {
-      button = <a href={url}>{title}</a>;
-    }
+export const listToLink = link => link.map((item) => {
+  const { link: url, title, className } = item;
+  let button;
+  if (url.charAt(0) === '/') {
+    button = <Link to={url}>{title}</Link>;
+  } else {
+    button = <a href={url}>{title}</a>;
+  }
 
-    return (
-      <li key={title} className={className || ''}>
-        {button}
-      </li>
-    );
-  }),
-  getEndpoint: end => fetch(end).then(res => res.json()),
-  markdownToReact: str => {
-    const convertedStr = marked(str);
-    const reactElem = htmlToReact(convertedStr);
-    return reactElem;
-  },
-};
+  return (
+    <li key={title} className={className || ''}>
+      {button}
+    </li>
+  );
+});
+export const getEndpoint = (...end) => fetch(...end).then(res => res.json());
+export const markdownToReact = str => htmlToReact(marked(str));
+
