@@ -9,7 +9,7 @@ const heroLinks = [
 ];
 
 
-export default () => (
+const Hero = () => (
   <div className="hero-main">
     <div className="hero-banner gutter">
       <img className="hero-image banner-item" src="/public/favicon.png" alt="IT Society Logo" />
@@ -22,3 +22,5 @@ export default () => (
     </div>
   </div>
 );
+
+export default Hero;

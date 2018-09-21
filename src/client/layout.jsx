@@ -8,4 +8,5 @@ const Layout = ({ children }) => (
     <Footer />
   </main>
 );
+
 export default Layout;

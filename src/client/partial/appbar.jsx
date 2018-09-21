@@ -1,29 +1,16 @@
 import { h } from 'preact';
+import { Link } from 'preact-router/match';
 
-import { listToLink } from '../util';
-
-
-const menuItems = [
-  { link: '/', title: 'Home', className: 'selected' },
-  { link: 'https://membership.upsu.net/', title: 'UPSU' },
-  { link: 'https://www.facebook.com/UoPItSociety/', title: 'Facebook' },
-];
-
-const Appbar = ({ className }) => {
-  const renderedMenuItems = listToLink(menuItems);
-
-  return (
-    <div className={`appbar ${className}`}>
-      <div className="appbar-inner gutter">
-        <ul className="menu-items">{renderedMenuItems}</ul>
-      </div>
+const Appbar = () => (
+  <div className="appbar">
+    <div className="appbar-inner gutter">
+      <ul className="menu-items">
+        <Link href="/" activeClassName="selected">Home</Link>
+        <Link href="/about" activeClassName="selected">About Us</Link>
+        <a href="https://www.facebook.com/UoPItSociety/">Facebook</a>
+      </ul>
     </div>
-  );
-};
-
-Appbar.defaultProps = {
-  className: '',
-  children: [],
-};
+  </div>
+);
 
 export default Appbar;

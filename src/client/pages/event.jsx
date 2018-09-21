@@ -9,40 +9,47 @@ const parsePrice = num => (num > 0 ? `${num.toFixed(2)}` : 'Free!');
 
 // use an normal function as we require
 const generatePage = (info) => {
-  const {
-    name, details, location, price, timing,
-  } = info;
+  const { name, details, location, price, timing } = info;
+  const parsedDetails = markdownToReact(details);
+  const parsedPrice = parsePrice(price);
+
   const eventDate = new Date(timing.start);
   const humanDate = format(eventDate, 'dddd Do MMMM YYYY');
   const humanTime = format(eventDate, 'hh:mm a');
-  const parsedDetails = markdownToReact(details);
-  const parsedPrice = parsePrice(price);
   // jesus
-  const loc = { lat: location.lat, lng: location.lon };
+  location.lng = location.lon;
+  delete location.lon;
   return (
     <div className="event">
-      <h2 type="display3" gutterBottom className="event-title">{name}</h2>
-      <div className="event-timings">
-        <span className="info">
-          <i color="action">date_range</i>
-          <h2 type="display1" className="event-date">{humanDate}</h2>
-        </span>
-        <span className="info">
-          <i color="action">access_time</i>
-          <h2 type="display1" className="event-date">{humanTime}</h2>
-        </span>
-      </div>
-      <div className="event-cost">
-        <i color="action">attach_money</i>
-        <h2 type="display1" className="event-date">{parsedPrice}</h2>
-      </div>
-      <div className="event-detail-card">
-        <div className="event-detail-card-container">
-          <div>
-            <div className="event-details">{parsedDetails}</div>
-          </div>
-          <div className="event-media-map">
-            <Map location={loc} />
+      <div className="card horizontal">
+        <div className="card-image">
+          <Map location={location} />
+        </div>
+        <div className="card-stacked">
+          <div className="card-content">
+            <h4 className="event-title">{name}</h4>
+            <div className="event-timings">
+              <span className="info">
+                <i className="material-icons">date_range</i>
+                <h6 className="event-date">{humanDate}</h6>
+              </span>
+              <span className="info">
+                <i className="material-icons">access_time</i>
+                <h6 className="event-date">{humanTime}</h6>
+              </span>
+            </div>
+            <div className="event-cost">
+              <i className="material-icons">attach_money</i>
+              <h6 className="event-date">{parsedPrice}</h6>
+            </div>
+            <div className="event-detail-card">
+              <div className="event-detail-card-container">
+                <div>
+                  <div className="event-details">{parsedDetails}</div>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
@@ -53,11 +60,11 @@ const generatePage = (info) => {
 export default class EventPage extends Component {
   constructor(props) {
     super(props);
-    this.id = props.match.params.id;
+    this.id = props.id;
     this.state = { children: <Loading /> };
   }
 
-  async componentWillMount() {
+  async componentDidMount() {
     const url = `/api/contentful/event/${this.id}`;
     const eventInfo = await getEndpoint(url);
     const children = generatePage(eventInfo);
@@ -67,9 +74,9 @@ export default class EventPage extends Component {
   render() {
     return (
       <div className="page">
-        <Grid container spacing={40} alignItems="stretch" justify="space-around" className="gutter">
+        <div className="gutter">
           {this.state.children}
-        </Grid>
+        </div>
       </div>
     );
   }

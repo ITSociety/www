@@ -2,7 +2,6 @@ import { distanceInWords } from 'date-fns';
 import { h, Component } from 'preact';
 import { Link } from 'preact-router/match';
 
-
 import Loading from '../loading';
 import { getEndpoint, markdownToReact } from '../../util';
 
@@ -20,10 +19,8 @@ const parseEvents = events => events.map((event) => {
           {parsed}
         </div>
         <div>
-          <Link to={`/event/${id}`}>
-            <a dense color="primary">
+          <Link href={`/event/${id}`}>
             Learn More
-            </a>
           </Link>
         </div>
       </div>
@@ -31,7 +28,7 @@ const parseEvents = events => events.map((event) => {
   );
 });
 
-export default class Events extends Component {
+class Events extends Component {
   constructor(props) {
     super(props);
     this.state = { children: <Loading /> };
@@ -58,3 +55,5 @@ export default class Events extends Component {
     );
   }
 }
+
+export default Events;
