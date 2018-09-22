@@ -4,7 +4,7 @@ import Router from 'preact-router';
 import 'materialize-css/sass/materialize.scss';
 
 import Layout from './layout';
-import { Home, Event, About, Member, Calc } from './Pages';
+import { Home, Event, About, Member, Calc, Leaderboard } from './Pages';
 
 import './styles/style.scss';
 
@@ -17,9 +17,10 @@ const router = (
       <Event path="/event/:slug" />
       <About path="/about" />
       <Calc path="/grade-calc" />
+      <Leaderboard path="/leaderboard" />
       <Home path="/" />
     </Router>
   </Layout>
 );
 
-render(router, null, main);
+render(router, main);
