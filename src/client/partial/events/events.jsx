@@ -1,31 +1,32 @@
-import { distanceInWords } from 'date-fns';
 import { h, Component } from 'preact';
+import chunk from 'lodash/chunk';
+import distanceInWords from 'date-fns/distance_in_words';
 import { Link } from 'preact-router/match';
 
 import Loading from '../loading';
 import { getEndpoint, markdownToReact } from '../../util';
 
-const parseEvents = events => events.map((event) => {
-  const { name, details, start, id } = event;
-  const startTime = new Date(start);
-  const distance = distanceInWords((new Date()), startTime, { addSuffix: true });
-  const parsed = markdownToReact(details);
-  return (
-    <div className="event-card-grid-item" key={name} item xs={12} sm={12} md={6}>
-      <div className="event-card">
-        <div>
-          <h1 type="headline" component="h3">{name}</h1>
-          <h1 type="body1" className="event-time">{distance}</h1>
-          {parsed}
-        </div>
-        <div>
-          <Link href={`/event/${id}`}>
-            Learn More
-          </Link>
+const parseEvents = group => group.map((events) => {
+  const cols = events.map((event) => {
+    const { eventName, additionalDetails, startTime, slug } = event.fields;
+    const distance = distanceInWords((new Date()), new Date(startTime), { addSuffix: true });
+    const parsed = markdownToReact(additionalDetails);
+    return (
+      <div className="col s12 m6">
+        <div className="card">
+          <div className="card-content">
+            <span className="card-title">{eventName}</span>
+            <span className="event-time">{distance}</span>
+            {parsed}
+          </div>
+          <div className="card-action">
+            <Link href={`/event/${slug}`}>Learn More</Link>
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  });
+  return <div className="row">{cols}</div>;
 });
 
 class Events extends Component {
@@ -37,7 +38,7 @@ class Events extends Component {
   async componentWillMount() {
     const events = await getEndpoint('/api/contentful/events');
     if (events.length % 2 === 1) events.pop();
-    const children = parseEvents(events);
+    const children = parseEvents(chunk(events, 2));
     this.setState({ children });
   }
 
@@ -45,9 +46,9 @@ class Events extends Component {
   render() {
     return (
       <div className="events gutter">
-        <h1 type="display3" className="events-title">Events</h1>
+        <h1 className="events-title">Events</h1>
         <div className="events-events">
-          <div container spacing={40} alignItems="stretch" justify="space-around">
+          <div>
             {this.state.children}
           </div>
         </div>

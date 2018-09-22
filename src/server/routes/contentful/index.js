@@ -18,7 +18,7 @@ contentfulApi.get('/', (req, res) => res.send('Welcome to Contentful API'));
 // GET all events
 contentfulApi.get('/events', async (req, res) => {
   const events = await getEvents();
-  const parsed = events.sort(sortEvents).map(prettifyEvent);
+  const parsed = events.sort(sortEvents);
   res.json(parsed);
 });
 
@@ -39,10 +39,11 @@ contentfulApi.get('/events/:classifier', async (req, res) => {
 });
 
 // GET an event of a certain id
-contentfulApi.get('/event/:id', async (req, res) => {
-  const { id } = req.params;
-  const event = await client.getEntry(id);
-  const { sys, fields } = event;
+contentfulApi.get('/event/:slug', async (req, res) => {
+  const { items: [{ sys, fields }] } = await client.getEntries({
+    content_type: 'event',
+    'fields.slug': req.params.slug,
+  });
 
   // format the event nicely
   const resp = {

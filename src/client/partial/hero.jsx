@@ -1,13 +1,5 @@
 import { h } from 'preact';
-
-import { listToLink } from '../util';
-
-const heroLinks = [
-  { link: 'https://membership.upsu.net/group/it-society#join', title: 'Sign Up' },
-  { link: '/about', title: 'About' },
-  { link: '/past-events', title: 'Past Events' },
-];
-
+import { Link } from 'preact-router/match';
 
 const Hero = () => (
   <div className="hero-main">
@@ -17,7 +9,9 @@ const Hero = () => (
     </div>
     <div className="hero-link-wrapper gutter">
       <ul className="hero-links">
-        {listToLink(heroLinks)}
+        <Link href="https://membership.upsu.net/group/it-society#join" key="sign-up">Sign Up</Link>
+        <Link href="/about" key="about">About</Link>
+        <Link href="/grade-calc" key="past">Grade Calc</Link>
       </ul>
     </div>
   </div>

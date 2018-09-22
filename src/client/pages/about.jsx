@@ -1,20 +1,28 @@
 import { h, Component } from 'preact';
 import { Link } from 'preact-router/match';
+import chunk from 'lodash/chunk';
 
 import { Loading } from '../partial';
 import { getEndpoint } from '../util';
 
-const formatCommitteeMembers = members => members.map(member => (
-  <div item key={member.id} xs={12} sm={6} md={4} className="committee-container">
-    <Link to={`/member/${member.id}`} className="committee-clickable">
-      <div className="committee-image" style={{ backgroundImage: `url(${member.image})` }} />
-      <h2 type="display1" component="h2">{member.name}</h2>
-      <h2 type="headline" component="h3">{member.role}</h2>
-    </Link>
-  </div>
-));
+const formatCommitteeMembers = chunked => chunked.map((members) => {
+  const mapped = members.map(member => (
+    <div key={member.id} className="committee-container col s12 m6">
+      <div className="card hoverable">
+        <div className="card-content">
+          <Link href={`/member/${member.id}`} className="committee-clickable">
+            <div className="committee-image" style={{ backgroundImage: `url(${member.image})` }} />
+            <h2>{member.name}</h2>
+            <h3>{member.role}</h3>
+          </Link>
+        </div>
+      </div>
+    </div>
+  ));
+  return <div className="row">{mapped}</div>;
+});
 
-export default class AboutPage extends Component {
+class About extends Component {
   constructor(props) {
     super(props);
     this.state = { children: <Loading /> };
@@ -22,18 +30,20 @@ export default class AboutPage extends Component {
 
   async componentWillMount() {
     const committee = await getEndpoint('/api/contentful/committee');
-    const children = formatCommitteeMembers(committee);
+    const children = formatCommitteeMembers(chunk(committee, 2));
     this.setState({ children });
   }
 
   render() {
     return (
-      <div className="about gutter">
-        <h2 type="display3" gutterBottom className="about-title">The Committee</h2>
-        <div container spacing={0} alignItems="stretch" justify="space-between">
+      <div className="about gutter page">
+        <h2 className="about-title">The Committee</h2>
+        <div>
           {this.state.children}
         </div>
       </div>
     );
   }
 }
+
+export default About;

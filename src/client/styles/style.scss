@@ -11,10 +11,13 @@ body {
   margin: 0;
 }
 
+.no-padding {
+  padding: 0!important;
+}
+
 .layout {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   height: 100%;
 }
 
@@ -25,6 +28,7 @@ body {
 }
 
 .appbar {
+  z-index: 1;
   width: 100%;
   height: var(--appbar-height);
   background-color: #fff;
@@ -76,11 +80,13 @@ body {
 }
 
 .home {
-  background-color: #f5f5f5;
+  z-index: 2;
 }
 
 .page {
+  background-color: #f5f5f5;
   padding-bottom: 40px;
+  flex: 1;
 }
 
 .menu-button { height: 100%; }
@@ -316,22 +322,6 @@ a, a span {
   margin-bottom: 24px;
   border-radius: 300px;
   background-size: contain;
-}
-
-.committee-container {
-  margin-bottom:64px;
-  transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  padding: 16px 0;
-}
-
-.committee-container, .committee-clickable {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.committee-container:hover {
-  box-shadow: 0 4px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12), 0 2px 4px -1px rgba(0,0,0,0.3);
 }
 
 .committee-container h2, .committee-container h3 {

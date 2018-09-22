@@ -16,9 +16,8 @@ const generatePage = (info) => {
   const eventDate = new Date(timing.start);
   const humanDate = format(eventDate, 'dddd Do MMMM YYYY');
   const humanTime = format(eventDate, 'hh:mm a');
-  // jesus
+  // google likes lng, contentful likes lon
   location.lng = location.lon;
-  delete location.lon;
   return (
     <div className="event">
       <div className="card horizontal">
@@ -60,14 +59,12 @@ const generatePage = (info) => {
 export default class EventPage extends Component {
   constructor(props) {
     super(props);
-    this.id = props.id;
+    this.slug = props.slug;
     this.state = { children: <Loading /> };
   }
 
   async componentDidMount() {
-    const url = `/api/contentful/event/${this.id}`;
-    const eventInfo = await getEndpoint(url);
-    const children = generatePage(eventInfo);
+    const children = await getEndpoint(`/api/contentful/event/${this.slug}`).then(generatePage);
     this.setState({ children });
   }
 
