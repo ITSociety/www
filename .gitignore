@@ -1,4 +1,4 @@
 node_modules/
-public/assets/
+public/assets/*
 *.log
 .env
