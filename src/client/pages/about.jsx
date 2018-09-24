@@ -10,7 +10,7 @@ const formatCommitteeMembers = chunked => chunked.map((members) => {
     <div key={member.id} className="committee-container col s12 m6">
       <div className="card hoverable">
         <div className="card-content">
-          <Link href={`/member/${member.id}`} className="committee-clickable">
+          <Link href={`/member/${encodeURIComponent(member.name)}`} className="committee-clickable">
             <div className="committee-image" style={{ backgroundImage: `url(${member.image})` }} />
             <h2>{member.name}</h2>
             <h3>{member.role}</h3>

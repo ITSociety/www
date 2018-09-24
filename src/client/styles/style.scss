@@ -3,10 +3,6 @@
   --appbar-color: #455a64;
 }
 
-* {
-  box-sizing: border-box;
-}
-
 body {
   margin: 0;
 }
@@ -390,16 +386,8 @@ a, a span {
     flex-direction: column;
   }
 
-  .map-container {
-    max-width: 100%;
-  }
-
   .event-timings {
     flex-direction: column;
-  }
-
-  .map-container, #map {
-    width: 100%;
   }
 
   .member-card {
@@ -420,11 +408,11 @@ a, a span {
     display: none;
   }
 
-  .hero-link-wrapper.gutter {
-    padding: 0;
-  }
-
   .hero-links {
     padding-left: 0;
+  }
+
+  .appbar {
+    display: none;
   }
 }

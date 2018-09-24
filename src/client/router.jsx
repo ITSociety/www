@@ -13,7 +13,7 @@ const main = document.getElementById('main');
 const router = (
   <Layout>
     <Router>
-      <Member path="/member/:id" />
+      <Member path="/member/:name" />
       <Event path="/event/:slug" />
       <About path="/about" />
       <Calc path="/grade-calc" />

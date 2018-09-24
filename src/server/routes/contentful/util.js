@@ -51,7 +51,7 @@ const prettifyEvent = ({ sys, fields }) => {
  * See above. Provides better formatting for transit
  * @param {Object} member Member to format
  */
-const formatCommitteeMember = ({ sys, fields }) => ({
+const formatCommittee = ({ sys, fields }) => ({
   id: sys.id,
   updated: sys.updatedAt,
   name: fields.memberName,
@@ -59,11 +59,12 @@ const formatCommitteeMember = ({ sys, fields }) => ({
   image: `https:${fields.memberPicture.fields.file.url}`,
   role: fields.memberRole,
   email: fields.memberEmailAddress,
+  content: fields.memberContent,
 });
 
 
 module.exports = {
-  formatCommitteeMember,
+  formatCommittee,
   prettifyEvent,
   sortEvents,
   getEntry,

@@ -1,6 +1,6 @@
 const express = require('express');
 const {
-  client, getEntry, prettifyEvent, sortEvents, formatCommitteeMember,
+  client, getEntry, prettifyEvent, sortEvents, formatCommittee,
 } = require('./util');
 
 const contentfulApi = express.Router();
@@ -68,26 +68,18 @@ contentfulApi.get('/event/:slug', async (req, res) => {
  */
 contentfulApi.get('/committee', async (req, res) => {
   const committeeMembers = await getCommittee();
-  const prettyMembers = committeeMembers.map(formatCommitteeMember);
+  const prettyMembers = committeeMembers.map(formatCommittee);
   res.json(prettyMembers);
 });
 
-contentfulApi.get('/committee/:id', async (req, res) => {
-  const { id } = req.params;
-  const members = await getCommittee();
-  const member = members.filter(mbr => mbr.sys.id === id)[0];
-  const { sys, fields } = member;
-  const formatted = {
-    id: sys.id,
-    updated: sys.updatedAt,
-    name: fields.memberName,
-    year: fields.committeeYear,
-    image: `https:${fields.memberPicture.fields.file.url}`,
-    role: fields.memberRole,
-    email: fields.memberEmailAddress,
-    content: fields.memberContent,
-  };
-  res.json(formatted);
+contentfulApi.get('/member/:name', async (req, res) => {
+  const name = decodeURIComponent(req.params.name);
+  const { items: [member] } = await client.getEntries({
+    content_type: 'committeeMember',
+    'fields.memberName': name,
+  });
+
+  res.json(formatCommittee(member));
 });
 
 
