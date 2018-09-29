@@ -1,8 +1,20 @@
-import React from 'react';
-import { CircularProgress } from 'material-ui/Progress';
-import purple from 'material-ui/colors/purple';
+import { h } from 'preact';
 
 
-export default () => (
-  <CircularProgress style={{ color: purple[500] }} className="loading-circle" size={50} />
+const Loading = () => (
+  <div className="preloader-wrapper big active">
+    <div className="spinner-layer spinner-green-only">
+      <div className="circle-clipper left">
+        <div className="circle" />
+      </div>
+      <div className="gap-patch">
+        <div className="circle" />
+      </div>
+      <div className="circle-clipper right">
+        <div className="circle" />
+      </div>
+    </div>
+  </div>
 );
+
+export default Loading;

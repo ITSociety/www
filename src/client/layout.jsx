@@ -1,4 +1,4 @@
-import React from 'react';
+import { h } from 'preact';
 import { Appbar, Footer } from './partial';
 
 const Layout = ({ children }) => (
@@ -8,4 +8,5 @@ const Layout = ({ children }) => (
     <Footer />
   </main>
 );
+
 export default Layout;

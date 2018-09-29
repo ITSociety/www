@@ -1,27 +1,26 @@
 // main imports
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { h, render } from 'preact';
+import Router from 'preact-router';
+import 'materialize-css/sass/materialize.scss';
 
-import Layout from './layout.jsx';
-import { Home, EventPage, AboutPage, PastEventsPage, MemberPage } from './pages';
+import Layout from './layout';
+import { Home, Event, About, Member, Calc, Leaderboard } from './Pages';
 
-const onUpdate = () => window.scrollTo(0, 0);
+import './styles/style.scss';
 
-const App = () => (
-  <Router onUpdate={onUpdate}>
-    <Switch>
-      <Layout>
-        <Route path="/event/:id" component={EventPage} />
-        <Route path="/member/:id" component={MemberPage} />
-        <Route exact path="/about" component={AboutPage} />
-        <Route exact path="/past-events" component={PastEventsPage} />
-        <Route exact path="/" component={Home} />
-      </Layout>
-    </Switch>
-  </Router>
+const main = document.getElementById('main');
+
+const router = (
+  <Layout>
+    <Router>
+      <Member path="/member/:name" />
+      <Event path="/event/:slug" />
+      <About path="/about" />
+      <Calc path="/grade-calc" />
+      <Leaderboard path="/leaderboard" />
+      <Home path="/" />
+    </Router>
+  </Layout>
 );
 
-const entry = document.getElementById('react');
-
-ReactDOM.render(<App />, entry);
+render(router, main);

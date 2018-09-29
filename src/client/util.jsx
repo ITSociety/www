@@ -1,35 +1,33 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import { h } from 'preact';
+import { Link } from 'preact-router/match';
 import marked from 'marked';
 import htmlToReact from 'html-react-parser';
+import Markdown from 'preact-markdown';
 
-marked.setOptions({
+const opts = {
   gfm: true,
   sanitize: true,
   smartypants: true,
   breaks: true,
+};
+
+export const listToLink = link => link.map((item) => {
+  const { link: url, title, className } = item;
+  let button;
+  if (url.charAt(0) === '/') {
+    button = <Link href={url}>{title}</Link>;
+  } else {
+    button = <a href={url}>{title}</a>;
+  }
+
+  return (
+    <li key={title} className={className || ''}>
+      {button}
+    </li>
+  );
 });
 
-module.exports = {
-  listToLink: link => link.map(item => {
-    const { link: url, title, className } = item;
-    let button;
-    if (url.charAt(0) === '/') {
-      button = <Link to={url}>{title}</Link>;
-    } else {
-      button = <a href={url}>{title}</a>;
-    }
+export const getEndpoint = (...end) => fetch(...end).then(res => res.json());
 
-    return (
-      <li key={title} className={className || ''}>
-        {button}
-      </li>
-    );
-  }),
-  getEndpoint: end => fetch(end).then(res => res.json()),
-  markdownToReact: str => {
-    const convertedStr = marked(str);
-    const reactElem = htmlToReact(convertedStr);
-    return reactElem;
-  },
-};
+
+export const markdownToReact = str => <Markdown markdown={str} markupOpts={opts} markdownOpts={opts} />;

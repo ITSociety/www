@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import { h, Component } from 'preact';
 import loadjs from 'loadjs';
 
 import mapStyle from './mapstyle';
 
-export default class GMap extends Component {
+class GMap extends Component {
   constructor(props) {
     super(props);
     this.location = props.location;
@@ -42,3 +42,5 @@ export default class GMap extends Component {
     );
   }
 }
+
+export default GMap;

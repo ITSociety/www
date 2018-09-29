@@ -1,9 +1,11 @@
 const express = require('express');
-const contentfulRoute = require('./contentful');
+const contentfulRoutes = require('./contentful');
+const leaderRoutes = require('./leaderboard');
 
 const router = express.Router();
 
-router.use('/contentful', contentfulRoute);
+router.use('/contentful', contentfulRoutes);
+router.use('/leaderboard', leaderRoutes);
 
 router.get('/', (req, res) => res.send('Welcome to api'));
 

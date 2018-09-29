@@ -1,13 +1,17 @@
 {
   "presets": [
-    [
-      "env",
-      {
-        "targets": {
-          "browsers": ["ie >= 11"]
-        }
+    ["@babel/preset-env", {
+      "useBuiltIns": "usage",
+      "targets": {
+        "browsers": [
+          "last 2 versions",
+          "ie >= 11"
+        ]
       }
-    ],
-    "react"
+    }]
+  ],
+  "plugins": [
+    "@babel/plugin-proposal-object-rest-spread",
+    ["transform-react-jsx", { "pragma": "h" }]
   ]
 }

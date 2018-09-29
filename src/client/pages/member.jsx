@@ -1,43 +1,32 @@
-import React, { Component } from 'react';
-import Card, { CardContent, CardMedia } from 'material-ui/Card';
-import Typography from 'material-ui/Typography';
-import Grid from 'material-ui/Grid';
+import { h, Component } from 'preact';
 
 import { Loading } from '../partial';
-import { getEndpoint, markdownToReact } from '../util.jsx';
+import { getEndpoint, markdownToReact } from '../util';
 
 const generatePage = member => (
-  <div className="member">
-    <Card className="member-card">
-      <CardMedia image={member.image} className="member-image" />
-      <div className="member-content-container">
-        <CardContent className="member-content">
-          <div className="member-headline">
-            <Typography type="display1">{member.name}</Typography>
-            <Typography type="headline" component="h2" color="secondary">
-              {member.role}
-            </Typography>
-          </div>
-          <div className="member-para">
-            {markdownToReact(member.content)}
-          </div>
-        </CardContent>
+  <div className="col s12 m8 push-m2">
+    <div className="card">
+      <div className="card-image">
+        <img src={member.image} alt={member.name} />
+        <span className="card-title">{member.name}</span>
       </div>
-    </Card>
+      <div className="card-content">
+        {member.role}
+        {markdownToReact(member.content)}
+      </div>
+    </div>
   </div>
 );
 
 export default class MemberPage extends Component {
   constructor(props) {
     super(props);
-    this.id = props.match.params.id;
+    this.name = props.name;
     this.state = { children: <Loading /> };
   }
 
   async componentWillMount() {
-    const url = `/api/contentful/committee/${this.id}`;
-    const memberInfo = await getEndpoint(url);
-    console.log(memberInfo);
+    const memberInfo = await getEndpoint(`/api/contentful/committee/${this.name}`);
     const children = generatePage(memberInfo);
     this.setState({ children });
   }
@@ -45,9 +34,11 @@ export default class MemberPage extends Component {
   render() {
     return (
       <div className="page">
-        <Grid container spacing={40} alignItems="stretch" justify="space-around" className="gutter">
-          {this.state.children}
-        </Grid>
+        <div className="gutter">
+          <div className="row">
+            {this.state.children}
+          </div>
+        </div>
       </div>
     );
   }
